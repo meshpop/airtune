@@ -1,33 +1,98 @@
 # Airtune
 
-Identify the currently playing song from any radio stream.
+**Hear a song on the radio. Know what it is in seconds.**
+
+Paste any radio stream URL and Airtune tells you the artist, song, and how confident it is. Works from the command line or a browser.
+
+---
 
 ## Install
 
 ```bash
-bash install.sh
+curl -s https://raw.githubusercontent.com/meshpop/airtune/main/install.sh | bash
 ```
+
+That's it. No configuration needed.
+
+---
 
 ## Usage
 
+Start Airtune:
+
 ```bash
-airtune install                                  # set up dirs (first run)
-airtune start                                    # start services
-airtune status                                   # check health
+airtune start
+```
+
+Identify a song:
+
+```bash
 airtune recognize https://stream.example.com/radio
 ```
 
-## Web UI
+Check that everything is running:
 
 ```bash
-python3 server.py
-# open http://localhost:8000
+airtune status
 ```
 
-Enter any radio stream URL and hit **Recognize**.
+---
+
+## Example
+
+```
+$ airtune recognize https://stream.radioparadise.com/aac-128
+
+  NOW PLAYING
+  ────────────────────────────────────
+  Artist   Queen
+  Song     Bohemian Rhapsody
+  Match    ████████████████░░░░  94%
+```
+
+---
+
+## Web UI
+
+Prefer a browser? Run the local server:
+
+```bash
+python3 ~/airtune/server.py
+```
+
+Then open **http://localhost:8000** — paste a URL, click Recognize.
+
+---
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `airtune install` | Set up Airtune on this machine |
+| `airtune start` | Start background services |
+| `airtune status` | Check what's running |
+| `airtune recognize <url>` | Identify the song on a stream |
+
+---
+
+## Requirements
+
+- Python 3.7+
+- Linux or macOS
+- Internet connection
+
+No external packages required.
+
+---
 
 ## Uninstall
 
 ```bash
-bash uninstall.sh
+bash ~/airtune/uninstall.sh
 ```
+
+---
+
+## License
+
+MIT
